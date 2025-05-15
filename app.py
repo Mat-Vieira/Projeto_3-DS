@@ -6,7 +6,7 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/login', methods=['POST'])
+@app.route('/acesso', methods=['POST'])
 def login():
     username = request.form['nome']
     email = request.form['email']
@@ -18,9 +18,13 @@ def login():
         print('unknow user')
         return 'Usuario ou senha incorreta', 401
 
+@app.route('/login')
+def login_form():
+    return render_template('login.html')
+
 @app.route('/servicos')
 def servicos():
     return render_template('servicos.html')
 
-if __name__ == '_main_':
+if __name__ == '__main__':
     app.run(debug=True)
