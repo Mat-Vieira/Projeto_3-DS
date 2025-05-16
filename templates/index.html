@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Página Inicial</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style_index.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>Bem-vindo!</h2>
+    <a href="/login" class="btn">Login</a>
+    <a href="/cadastro" class="btn">Cadastro</a>
+    <div class="link-cadastro">
+      <p>Já tem uma conta? <a href="/login">Faça login</a></p>
+    </div>
+  </div>s
+</body>
+</html>
