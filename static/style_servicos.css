@@ -1,27 +1,59 @@
+@import url('https://fonts.cdnfonts.com/css/pistoleer');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
+  
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f4f7fc;
-    color: #333;
-    line-height: 1.6;
-    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0 , 0, 1), rgba(0, 0, 0, 0.3)), url(img/background6.png);
+    color: black;
+    background-attachment: fixed;
+    background-size: cover;
+    line-height: 1;
+    padding: 0px;
   }
   header {
-    max-width: 900px;
-    margin: 0 auto 30px;
+    position: relative;
+    max-width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 1;
+    display: flexbox;
+    background-color: #2c0021;
+    height: 12vh;
+    opacity: 0.9;
+  }
+  header::before{
+    content: "";
+    top: 40%;
+    filter: blur(1px);
+    box-shadow: 0px 0px 20px rgb(255, 0, 221);
+    left: 0;
+    width: 100%;
+    height: 20%;
+    position: absolute;
+    background: rgb(255, 255, 255);
+    z-index: -1;
+    opacity: 1;
   }
   header h1 {
     font-size: 2.8rem;
     color: #2c3e50;
     letter-spacing: 2px;
     font-weight: 700;
+    transform: translateX(200%);
+  }
+  @keyframes blink {
+    0%{
+      -webkit-text-stroke: 0.3px rgba(255, 255, 255, 0) ; text-shadow: 2px 2px 10px rgb(0, 0, 0); color: #50006d;
+    }
+    2%{-webkit-text-stroke: 0.3px rgb(255, 255, 255) ; text-shadow: 2px 2px 20px rgb(0, 0, 0);}
+    4%{-webkit-text-stroke: 0.3px rgba(255, 255, 255, 0) ; text-shadow: 2px 2px 10px rgb(0, 0, 0); color: #50006d;}
+    6%{-webkit-text-stroke: 0.3px rgb(255, 255, 255) ; text-shadow: 2px 2px 20px rgb(0, 0, 0);color: #bb00ff;}
+    100%{}
   }
   .user-info {
     font-size: 1.1rem;
@@ -33,6 +65,7 @@
   .btn-container {
     display: flex;
     gap: 15px;
+    transform: translateX(-40px);
   }
   button.login-btn, button.signup-btn, button.logout-btn {
     background-color: #2980b9;
@@ -61,21 +94,39 @@
     background-color: #922b21;
   }
   main {
-    max-width: 900px;
-    margin: 0 auto;
+    max-width: 1000px;
+    position: relative;
+    margin: 0px auto;
+    height: 100%;
+    padding: 100px;
+    z-index: 2;
+    text-align: center;
+  }
+  main::before {
+    content: '';
+    position: absolute;
+    z-index: -2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+    background: linear-gradient(to top, rgb(0, 0, 0, 1), #2c0021);
   }
   .postagem {
-    background: white;
+    background: #110014;
     border-radius: 10px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     margin-bottom: 25px;
     padding: 0;
     overflow: hidden;
     cursor: default;
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 1s ease;
+    transition: transform 0.3s ease;
   }
   .postagem:hover {
-    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    box-shadow: 0 12px 30px rgba(113, 0, 158, 0.8);
+    transform: scale(1.1);
   }
   .imagem-postagem {
     width: 100%;
@@ -88,17 +139,29 @@
     padding: 20px 25px;
   }
   .titulo-noticia {
-    color: #2980b9;
+    color: #ff7cee;
     font-weight: 700;
     font-size: 1.5rem;
     margin-bottom: 8px;
     user-select: none;
+    text-shadow: 2px 2px 0px rgb(0, 0, 0)
+  }
+  .titulo-noticia:hover{
+    text-decoration: underline;
   }
   .descricao {
-    color: #7f8c8d;
+    color: #ffffff;
     font-size: 1rem;
     user-select: none;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    z-index: 5;
+    text-align: center;
+    text-shadow: 1px 1px 20px rgb(255, 154, 216)
+  }
+  .fonte {
+  font-size: 1rem;
+  color: rgb(218, 179, 255);
+  text-decoration: none;
   }
   .comentarios {
     border-top: 1px solid #ddd;
@@ -149,19 +212,26 @@
   }
   @media (max-width: 600px) {
     body {
-      padding: 10px;
+      padding: 0px;
     }
     header h1 {
-      font-size: 2rem;
+      font-size: 0.2rem;
+      transform: translateX(30%);
+    }
+    main{
+      max-width: 800px;
+      margin: 0 auto;
+      height: 100%;
+      padding: 15px;
     }
     .conteudo-postagem {
-      padding: 15px 20px;
+      padding: 30px 50px;
     }
     .titulo-noticia {
-      font-size: 1.3rem;
+      font-size: 1rem;
     }
     .btn-container {
-      gap: 10px;
+      gap: 0px;
     }
     button.login-btn, button.signup-btn, button.logout-btn {
       padding: 8px 14px;

@@ -1,17 +1,52 @@
+@import url('https://fonts.cdnfonts.com/css/edit-undo-brk');
+h2 {
+  font-family: 'Edit Undo BRK', sans-serif;
+  font-size: 3.5rem;
+  color: rgb(255, 0, 255);
+  animation: glow 3s ease infinite;
+}
+@keyframes glow {
+  0% {text-shadow:0px 0px 0px #9600bb, 0px 0px 0px #eb56ff;}
+  50% {text-shadow:1px 1px 5px #000000, 1px 1px 5px #000000;}
+  100% {text-shadow:0px 0px 0px #9600bb, 0px 0px 0px #eb56ff;}
+}
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-image:
+    linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)),
+    url(img/background2.png);
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    height: 100%;
+  }
+html {
+  background-color: black;
 }
-
-.container {
+  .container {
+    position: relative;
     width: 350px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
+    border: 0px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
+    z-index: 1;
+  }
+  .container::before{
+    filter: brightness(0.5);
+    content: "";
+    position: absolute;
+    backdrop-filter: blur(10px);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    z-index: -1;
+  }
 
 .container h2 {
     text-align: center;
@@ -24,21 +59,20 @@ body {
 
 .form-group label {
     display: block;
-    margin-bottom: 5px;
 }
 
 .form-group input {
     width: 100%;
     height: 40px;
-    padding: 10px;
-    border: 1px solid #ccc;
+    padding: 0px;
+    border: 1px solid #000000;
     border-radius: 5px;
 }
 
 .btn-login {
     width: 100%;
     height: 40px;
-    background-color: #4CAF50;
+    background-color: #8a0055;
     color: #fff;
     padding: 10px;
     border: none;
@@ -47,7 +81,8 @@ body {
 }
 
 .btn-login:hover {
-    background-color: #3e8e41;
+    background-color: #500045;
+    box-shadow: 0 0px 30px rgba(183, 0, 255, 0.8);
 }
 
 .link-cadastro {
@@ -57,9 +92,9 @@ body {
 
 .link-cadastro a {
     text-decoration: none;
-    color: #4CAF50;
+    color: #8a0055;
 }
 
 .link-cadastro a:hover {
-    color: #3e8e41;
+    color: #e200c4;
 }

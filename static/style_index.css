@@ -1,35 +1,73 @@
+@import url('https://fonts.cdnfonts.com/css/edit-undo-brk');
+h2 {
+  font-family: 'Edit Undo BRK', sans-serif;
+  font-size: 3.5rem;
+  color: rgb(255, 0, 255);
+  animation: glow 3s ease infinite;
+}
+@keyframes glow {
+  0% {text-shadow:0px 0px 0px #9600bb, 0px 0px 0px #eb56ff;}
+  50% {text-shadow:1px 1px 5px #ffffff, 2px 2px 20px #ff87f5;}
+  100% {text-shadow:0px 0px 0px #9600bb, 0px 0px 0px #eb56ff;}
+}
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-image:
+    linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.4)),
+    url(img/background1.png);
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
   }
+html {
+  background-color: black;
+}
   .container {
+    position: relative;
     width: 350px;
-    margin: 50px auto;
+    margin: auto;
     padding: 20px;
-    background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    z-index: 1;
+    transform: translateY(30%);
+  }
+  .container::before{
+    filter: brightness(0.5);
+    content: "";
+    position: absolute;
+    backdrop-filter: blur(10px);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    z-index: -1;
   }
   .container h2 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
   }
   .btn {
     display: block;
     width: 100%;
     height: 40px;
-    background-color: #4CAF50;
+    background-color: #8a0055;
     color: #fff;
     text-align: center;
-    line-height: 40px; /* Center text vertically */
+    line-height: 40px;
     border: none;
     border-radius: 5px;
     text-decoration: none;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s ease;
   }
   .btn:hover {
-    background-color: #3e8e41;
+    background-color: #500045;
+    box-shadow: 0 0px 20px #500045;
   }
   .link-cadastro {
     text-align: center;
@@ -37,8 +75,8 @@ body {
   }
   .link-cadastro a {
     text-decoration: none;
-    color: #4CAF50;
+    color: #b4006f;
   }
   .link-cadastro a:hover {
-    color: #3e8e41;
+    color: #e200c4;
   }

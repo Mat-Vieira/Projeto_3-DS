@@ -3,47 +3,43 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Feed de Notícias</title>
+<title>Noticias</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style_servicos.css') }}">
 </head>
 <body>
 <header>
-  <h1>Feed de Notícias</h1>
+  <h1 style="color: #bb00ff; -webkit-text-stroke: 0.3px rgb(255, 255, 255) ; text-shadow: 2px 2px 20px rgb(53, 0, 48); font-family: 'Pistoleer', sans-serif; font-size: 4rem;
+  animation: blink 5s ease infinite;">Notícias</h1>
   <div class="btn-container">
-    <a href="/login"><button class="login-btn" id="btnLogin">Login</button></a>
-    <a href="/cadastro"></a><button class="signup-btn" id="btnCadastro">Cadastro</button></a>
   </div>
 </header>
 <main id="feed-container">
-  <!-- Notícias serão carregadas aqui -->
+
 </main>
 
 <script>
   // Notícias com imagem ilustrativa
   const noticias = [
     {
-      id: 'noticia jldsahda',
-      titulo: 'Sei la oque sjfjksdf',
-      descricao: 'dkjsafhuspgfusdgfuasfuifgsp',
-      imagem: 'https://th.bing.com/th/id/OSK.f58cddde2f9015b1f044a6fa0b883758?w=102&h=102&c=7&o=6&dpr=1.3&pid=SANGAM'
+      id: 'deadisland2',
+      titulo: 'Texto teste',
+      descricao: 'Texto teste',
+      imagem: 'https://assets.xboxservices.com/assets/1f/c8/1fc8ce3b-60b6-422a-84d3-16858472ccde.jpg?n=745632_GLP-Page-Hero-1084_1920x1080.jpg',
+      fonte: ''
     },
     {
-      id: 'noticia1',
-      titulo: 'NASA descobre água em Marte',
-      descricao: 'A NASA anunciou a descoberta de sinais de água em Marte, o que aumenta as chances de vida no planeta vermelho.',
-      imagem: 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=800&q=60'
+      id: 'vibrantvisuals',
+      titulo: 'Texto teste',
+      descricao: 'Texto teste',
+      imagem: 'https://pub-f354ec240bea480db7320bd0e29d972e.r2.dev/sites/8/2025/03/Minecraft_03_Vibrant_Visuals-dc564aedc997d04ebbf5.jpg',
+      fonte: ''
     },
     {
-      id: 'noticia2',
-      titulo: 'Avanços na inteligência artificial em 2024',
-      descricao: 'Especialistas discutem os avanços mais importantes em inteligência artificial previstos para este ano.',
-      imagem: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=60'
-    },
-    {
-      id: 'noticia3',
-      titulo: 'Economia global mostra sinais de recuperação',
-      descricao: 'Indicadores recentes apontam para uma recuperação gradual da economia global após períodos desafiadores.',
-      imagem: 'https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=800&q=60'
+      id: 'GTA6',
+      titulo: 'Texto teste',
+      descricao: 'Texto teste',
+      imagem: 'https://cdn.mos.cms.futurecdn.net/hBWx3UpU2Je2zJqrHLyUQW.jpg',
+      fonte: '',
     }
   ];
 
@@ -66,15 +62,28 @@
     titulo.className = 'titulo-noticia';
     titulo.textContent = noticia.titulo;
 
+    titulo.addEventListener('click', () => {
+  
+    window.open(noticia.fonte, '_blank');
+});
+
+
     const descricao = document.createElement('p');
     descricao.className = 'descricao';
     descricao.textContent = noticia.descricao;
+
+    const fonte = document.createElement('a');
+    fonte.className = 'fonte';
+    fonte.href = noticia.fonte;
+    fonte.textContent = 'ⓘ Fonte';
+    fonte.target = '_blank';
 
     conteudo.appendChild(titulo);
     conteudo.appendChild(descricao);
 
     postagem.appendChild(img);
     postagem.appendChild(conteudo);
+    conteudo.appendChild(fonte)
 
     return postagem;
   }
@@ -83,14 +92,6 @@
     feedContainer.appendChild(criarPostagem(noticia));
   });
 
-  // Botões de login e cadastro redirecionam para páginas respectivas
-  document.getElementById('btnLogin').addEventListener('click', () => {
-    window.location.href = 'login.html';
-  });
-
-  document.getElementById('btnCadastro').addEventListener('click', () => {
-    window.location.href = 'cadastro.html';
-  });
 </script>
 </body>
 </html>
