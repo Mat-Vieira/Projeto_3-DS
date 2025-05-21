@@ -4,31 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
-    <style>
-        body {
-            padding: 20px;
-        }
-        .chat {
-            margin-bottom: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_chat.css') }}">
 </head>
 <body>
+<div class="chat-container">
 
-    <h1>Chat para {{ postagem.titulo }}</h1>
-    <div id="chat-container">
-        <div class="chat">
-            <h3>Chat para Postagem ID: {{ postagem.id }}</h3>
-            <textarea placeholder="Digite sua mensagem..."></textarea>
-            <button onclick="enviarMensagem('{{ postagem.id }}')">Enviar</button>
+  <div class="sidebar">
+    <div class="sidebar_header">
+        <img src="/static/img/lupa.png" style="width: 30px; filter: invert();" >
+        <input style="opacity: 0.6; background: none; color: white; border: none; width: 100%; height: auto; outline: none;" placeholder="Pesquisar..."></input>
+    </div>
+      {% for noticia in noticias %}
+        <img class="imagem-postagem" src="{{ noticia.imagem }}" alt="{{ noticia.titulo }}">
+        <a class="titulo-noticia" href="{{ url_for('chat', chat_id=noticia.id) }}">{{ noticia.titulo }}</a>
+      {% endfor %}
+  </div>
+
+
+  <div class="chat-area">
+    <div class="chat-header">{{noticia.titulo}}</div>
+
+    <div class="chat-messages">
+      <img class="imagem-mensagem" src="{{ noticia.imagem }}" alt="{{ noticia.titulo }}" style="filter: brightness(0.1);">
+        <div class="user-message-container" id="chat-messages">
+            <div class="user-message">
+                
+            </div>
         </div>
     </div>
+    <div class="chat-input">
+      <input id="write_msg" type="text" placeholder="Falar sobre {{noticia.titulo}}..." id="user-input">
+      <h6 id="typing" style="color: white; position: absolute; right: 5.5rem; bottom: 4rem; font-size: 0.8rem; display: none; animation: typing-in 0.3s ease;">user.name esta digitando</h6>
+      <button id="send_msg" >🢂</button>
+    </div>
+  </div>
+</div>
+<script>
+  const chatMessages = document.getElementById('chat-messages');
+  const userInput = document.getElementById('write_msg');
+  const sendButton = document.getElementById('send_msg');
+  const typingIndicator = document.getElementById('typing');
 
-    <script>
-        function enviarMensagem(id) {
-            alert(`Mensagem enviada para o chat da postagem com ID: ${id}`);
-        }
-    </script>
+  chatMessages.style.display = 'none'
 
+  function scrollToBottomIfNeeded() {
+  const isNearBottom =
+    chatMessages.scrollHeight - chatMessages.scrollTop - chatMessages.clientHeight < 50;
+
+  if (isNearBottom) {
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+}
+userInput.addEventListener('click', () => {
+    typingIndicator.style.display = 'block';
+    setTimeout(() => {
+      typingIndicator.style.display = 'none';
+    }, 8000);
+  });
+
+  sendButton.addEventListener('click', () => {
+     chatMessages.style.display = 'flex'
+    typingIndicator.style.display = 'none';
+    const message = userInput.value;
+    if (message.trim() !== '') {
+      const newMessage = document.createElement('div');
+      newMessage.className = 'user-message';
+      newMessage.textContent = message;
+      chatMessages.appendChild(newMessage);
+      userInput.value = '';
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    
+  });
+
+   userInput.addEventListener('keydown', function(event) {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    const message = userInput.value;
+     chatMessages.style.display = 'flex'
+    typingIndicator.style.display = 'none';
+    if (message.trim() !== '') {
+      const newMessage = document.createElement('div');
+      newMessage.className = 'user-message';
+      newMessage.textContent = message;
+      chatMessages.appendChild(newMessage);
+      userInput.value = '';
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+  }
+});
+
+ function scrollIfNearBottom() {
+  const distanceFromBottom = chatMessages.scrollHeight - chatMessages.scrollTop - chatMessages.clientHeight;
+  if (distanceFromBottom < 50) {
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+}
+  </script>
 </body>
 </html>

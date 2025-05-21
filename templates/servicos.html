@@ -14,35 +14,21 @@
   </div>
 </header>
 <main id="feed-container">
-
+  {% for noticia in noticias %}
+    <article class="postagem">
+      <img class="imagem-postagem" src="{{ noticia.imagem }}" alt="{{ noticia.titulo }}">
+      <div class="conteudo-postagem">
+        <h2 class="titulo-noticia">{{ noticia.titulo }}</h2>
+        <p class="descricao">{{ noticia.descricao }}</p>
+        <a class="fonte" href="{{ noticia.fonte }}" target="_blank">ⓘ Fonte</a>
+        <a class="chat" href="{{ url_for('chat', chat_id=noticia.id) }}" target="_blank">Chat →</a>
+      </div>
+    </article>
+  {% endfor %}
 </main>
 
 <script>
-  // Notícias com imagem ilustrativa
-  const noticias = [
-    {
-      id: 'deadisland2',
-      titulo: 'Texto teste',
-      descricao: 'Texto teste',
-      imagem: 'https://assets.xboxservices.com/assets/1f/c8/1fc8ce3b-60b6-422a-84d3-16858472ccde.jpg?n=745632_GLP-Page-Hero-1084_1920x1080.jpg',
-      fonte: ''
-    },
-    {
-      id: 'vibrantvisuals',
-      titulo: 'Texto teste',
-      descricao: 'Texto teste',
-      imagem: 'https://pub-f354ec240bea480db7320bd0e29d972e.r2.dev/sites/8/2025/03/Minecraft_03_Vibrant_Visuals-dc564aedc997d04ebbf5.jpg',
-      fonte: ''
-    },
-    {
-      id: 'GTA6',
-      titulo: 'Texto teste',
-      descricao: 'Texto teste',
-      imagem: 'https://cdn.mos.cms.futurecdn.net/hBWx3UpU2Je2zJqrHLyUQW.jpg',
-      fonte: '',
-    }
-  ];
-
+  
   const feedContainer = document.getElementById('feed-container');
 
   // Cria post sem interação
@@ -62,9 +48,8 @@
     titulo.className = 'titulo-noticia';
     titulo.textContent = noticia.titulo;
 
-    titulo.addEventListener('click', () => {
-  
-    window.open(noticia.fonte, '_blank');
+    feedContainer.addEventListener('click', () => {
+    window.location.href = `/chat/${noticia.id}`;
 });
 
 
@@ -78,12 +63,19 @@
     fonte.textContent = 'ⓘ Fonte';
     fonte.target = '_blank';
 
+    const chat = document.createElement('a');
+    chat.className = 'chat';
+    chat.href = `/chat/${noticia.id}`;
+    chat.textContent = 'Chat --->';
+    chat.target = '_blank';
+
     conteudo.appendChild(titulo);
     conteudo.appendChild(descricao);
 
     postagem.appendChild(img);
     postagem.appendChild(conteudo);
     conteudo.appendChild(fonte)
+    conteudo.appendChild(chat)
 
     return postagem;
   }

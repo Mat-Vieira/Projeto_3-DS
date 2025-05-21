@@ -1,0 +1,237 @@
+@import url('https://fonts.cdnfonts.com/css/pistoleer');
+@import url('https://fonts.cdnfonts.com/css/futurapress');
+@import url('https://fonts.cdnfonts.com/css/montserrat');
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  scrollbar-width: thin;
+  scrollbar-color: #616161 #020202;
+}
+
+body, html {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.chat-container {
+  display: flex;
+  height: 100vh;
+}
+
+.imagem-postagem {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid #110014;
+}
+
+.imagem-mensagem {
+    position: fixed;
+    width: 110%;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    z-index: -1;
+}
+
+/* Área de postagens (rolável) */
+.sidebar {
+  width: 25%;
+  max-width: 300px;
+  overflow-y: auto;
+  padding: 1rem;
+  display: grid;
+  position: relative;
+  z-index: 0;
+  border-right: 1px solid #363636;
+  background: linear-gradient(to top, rgba(0, 0 , 0, 1), rgba(0, 0, 0, 0.3)), url(img/background6.png);
+}
+.sidebar::before {
+    content: '';
+    position: absolute;
+    z-index: -5;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    filter: brightness(0.2);
+    gap: 1rem;
+  }
+  .sidebar_header {
+    display: flex;
+    gap: 1rem;
+    color: white;
+    border: 1px solid #ffffff;
+    padding: 15px;
+    border-radius: 50px;
+    margin-bottom: 10px;
+  }
+  .titulo-noticia {
+    color: #ff7cee;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    text-shadow: 2px 2px 0px rgb(0, 0, 0);
+    text-decoration: none;
+    background-color: #110014;
+    margin-top: -40px;
+    padding-left: 5px;
+    padding-top: 5px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transition: transform 0.3s ease, text-shadow 0.3s ease, border-radius 0.3s ease, border 1s ease;
+  }
+
+  .titulo-noticia:hover {
+    text-shadow: 0px 0px 5px rgb(119, 72, 124);
+    transform: scale(1.05);
+    border-radius: 20px;
+    border: 1px solid #ffffff;
+  }
+
+/* Área de chat (fixa) */
+.chat-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cabeçalho do chat */
+.chat-header {
+  padding: 1rem;
+  color: #f2d0ff;
+  margin-left: 20px;
+  text-align: left;
+  font-size: 1.05rem;
+  font-weight: 800;
+  font-family: 'Montserrat', sans-serif;
+  z-index: 1;
+  position: relative;
+}
+
+.chat-header::before {
+  content: '';
+  position: absolute;
+  z-index: -5;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin-left: -20px;
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid #363636;
+}
+
+/* Área de mensagens (fixa, expandida) */
+.chat-messages {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  font-size: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Barra de escrever */
+.chat-input {
+
+  display: flex;
+  padding: 1rem;
+  
+  gap: 1rem;
+}
+
+.chat-input input[type="text"] {
+  flex: 1;
+  background-color: #5f3e56;
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+.chat-input button {
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  background-color: #e6e6e6;
+  cursor: pointer;
+  outline: none;
+}
+
+.user-message-container {
+  position: fixed;
+  bottom: 5rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  z-index: 9999;
+}
+
+.user-message {
+  background-color: #5f3e5698;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 10px;
+  max-width: 90%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  border-bottom-right-radius: 0px;
+  transform: scale(0.7);
+  transform-origin: bottom right;
+  font-size: 1.7rem;
+  animation: entry 0.3s ease-in-out;
+}
+
+@keyframes entry {
+    0% {
+        transform: translateY(20px) scale(0.7);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0px) scale(0.7);
+        opacity: 1;
+    }
+}
+
+@keyframes typing-in {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+    
+}
+
+#chat-messages {
+  height: 80%; 
+  width: 70%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 0.5rem;
+  scroll-behavior: smooth;
+}
+
+
+
+
