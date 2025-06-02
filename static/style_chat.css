@@ -30,6 +30,7 @@ body, html {
     object-fit: cover;
     border-radius: 10px;
     border: 2px solid #110014;
+    margin-bottom: 1rem;
 }
 
 .imagem-mensagem {
@@ -62,7 +63,6 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    
     filter: brightness(0.2);
     gap: 1rem;
   }
@@ -79,7 +79,7 @@ body, html {
     color: #ff7cee;
     font-weight: 700;
     font-size: 0.9rem;
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
     text-shadow: 2px 2px 0px rgb(0, 0, 0);
     text-decoration: none;
     background-color: #110014;
@@ -88,14 +88,10 @@ body, html {
     padding-top: 5px;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-    transition: transform 0.3s ease, text-shadow 0.3s ease, border-radius 0.3s ease, border 1s ease;
   }
 
   .titulo-noticia:hover {
-    text-shadow: 0px 0px 5px rgb(119, 72, 124);
-    transform: scale(1.05);
-    border-radius: 20px;
-    border: 1px solid #ffffff;
+    text-decoration: underline;
   }
 
 /* Área de chat (fixa) */
