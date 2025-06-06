@@ -22,7 +22,7 @@ def login():
 def cadastro():
     return render_template('cadastro.html')
 
-@usuario_bp.route('/add_cadastro' , methods=('POST'))
+@usuario_bp.route('/add_cadastro' , methods=['POST'])
 def add_cadastro():
     email = request.form['email']
     senha = request.form['senha']
