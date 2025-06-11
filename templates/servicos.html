@@ -21,7 +21,7 @@
         <h2 class="titulo-noticia">{{ noticia.titulo }}</h2>
         <p class="descricao">{{ noticia.descricao }}</p>
         <a class="fonte" href="{{ noticia.fonte }}" target="_blank">ⓘ Fonte</a>
-        <a class="chat" href="{{ url_for('chat', chat_id=noticia.id) }}" target="_blank">Chat →</a>
+        <a class="chat" href="{{ url_for('main.chat', chat_id=noticia.id) }}" target="_blank">Chat →</a>
       </div>
     </article>
   {% endfor %}

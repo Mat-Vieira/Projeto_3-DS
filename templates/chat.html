@@ -16,7 +16,7 @@
     </div>
       {% for noticia in noticias %}
         <img class="imagem-postagem" src="{{ noticia.imagem }}" alt="{{ noticia.titulo }}">
-        <a class="titulo-noticia" href="{{ url_for('chat', chat_id=noticia.id) }}">{{ noticia.titulo }}</a>
+        <a class="titulo-noticia" href="{{ url_for('main.chat', chat_id=noticia.id) }}">{{ noticia.titulo }}</a>
       {% endfor %}
   </div>
 
