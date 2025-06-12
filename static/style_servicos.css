@@ -40,11 +40,12 @@
     opacity: 1;
   }
   header h1 {
+    position: absolute;
     font-size: 2.8rem;
     color: #2c3e50;
     letter-spacing: 2px;
     font-weight: 700;
-    transform: translateX(200%);
+    transform: translateX(50%);
   }
   @keyframes blink {
     0%{
