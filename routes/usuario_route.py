@@ -36,30 +36,22 @@ def cadastro():
 
 @usuario_bp.route('/add_cadastro', methods=['POST'])
 def add_cadastro():
-    email = request.form['email']
     login = request.form['login']
     senha = request.form['senha']
     nome = request.form['nome']
-    datanascimento = request.form['data-nascimento']
-    cpf = request.form['cpf']
-    telefone = request.form['telefone']
 
 
     session['usuario'] = {
-        'email': email,
         'login': login,
         'nome': nome,
-        'datanascimento': datanascimento,
-        'cpf': cpf,
-        'telefone': telefone
     }
 
-    if email in USERS:
+    if login in USERS:
         logging.warning(f'Usuário já cadastrado: {login}')
         return "Usuário já cadastrado", 400
 
-    USERS[email] = senha
-    logging.info(f'Cadastro realizado com sucesso: {email}, {login}, {nome}, {datanascimento}, {cpf}, {telefone}')
+    USERS[login] = senha
+    logging.info(f'Cadastro realizado com sucesso: {login}, {nome}')
     return redirect(url_for('usuario.servicos'))
 
 
