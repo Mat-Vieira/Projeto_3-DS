@@ -15,13 +15,17 @@ def login():
 
 @usuario_bp.route('/servicos')
 def servicos():
-    return render_template('servicos.html')
+    #getuser = session.get('usuario')
+    return render_template('servicos.html', nomeuser='Teste')
 
 @usuario_bp.route('/acesso', methods=['POST'])
 def acesso():
     username = request.form['login']
     password = request.form['password']
+
+
     if username in USERS and USERS[username] == password:
+        session['usuario'] = username
         return redirect(url_for('usuario.servicos'))
     else:
         logging.warning(f'Usuário ou senha incorretos: {username}')

@@ -9,7 +9,4 @@ app.register_blueprint(main_bp)
 app.register_blueprint(usuario_bp, url_prefix='/usuario')
 
 if __name__ == '__main__':
-    print("Iniciando servidor Flask...")
     app.run(debug=True)
-
-
