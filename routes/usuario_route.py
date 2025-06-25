@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, session, url_for
+import secrets
 import logging
 
 logging.basicConfig(level=logging.INFO)
@@ -15,9 +16,9 @@ def login():
 
 @usuario_bp.route('/servicos')
 def servicos():
-    #getuser = session.get('usuario')
+    getuser = session.get('usuario')
     return render_template('servicos.html', nomeuser='Teste')
-
+ 
 @usuario_bp.route('/acesso', methods=['POST'])
 def acesso():
     username = request.form['login']
@@ -26,16 +27,15 @@ def acesso():
 
     if username in USERS and USERS[username] == password:
         session['usuario'] = username
+        token = '1234'
+        session['token'] = token
         return redirect(url_for('usuario.servicos'))
     else:
-        logging.warning(f'Usuário ou senha incorretos: {username}')
         session.pop('usuario', None)
-        print('Usuário não encontrado')
         return "Usuário ou senha incorretos", 401
 
 @usuario_bp.route('/cadastro')
 def cadastro():
-
     return render_template('cadastro.html')
 
 @usuario_bp.route('/add_cadastro', methods=['POST'])
@@ -59,7 +59,29 @@ def add_cadastro():
     return redirect(url_for('usuario.servicos'))
 
 
-@usuario_bp.route('/logout')
+@usuario_bp.route('/logout', methods=['GET'])
 def logout():
-    session.pop('usuario', None)
-    return redirect(url_for('/'))
+    session.clear()
+    return redirect(url_for('usuario.login'))
+
+
+@usuario_bp.before_request
+def check_auth():
+    rotas_livres = [
+        'usuario.login',
+        'usuario.logout',
+        'usuario.acesso',
+        'usuario.cadastro',
+        'usuario.add_cadastro'
+    ]
+
+    print("Endpoint acessado:", request.endpoint)  # Ajuda no debug
+
+    if request.endpoint in rotas_livres:
+        return
+
+    token = session.get('token')
+    if token:
+        return
+
+    return redirect(url_for('usuario.login'))

@@ -12,7 +12,7 @@
     <a href="{{ url_for('usuario.login') }}" class='btn'>Login</a>
     <a href="{{ url_for('usuario.cadastro') }}" class='btn'>Cadastro</a>
     <div class="link-cadastro">
-      <p style="color: white;">Já tem uma conta? <a href="/login">Faça login</a></p>
+      <p style="color: white;">Já tem uma conta? <a href="{{ url_for('usuario.login') }}">Faça login</a></p>
     </div>
   </div>
 </body>
