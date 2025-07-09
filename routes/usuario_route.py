@@ -49,6 +49,7 @@ def add_cadastro():
         'login': login,
         'nome': nome,
     }
+    session['token'] = '1234'
 
     if login in USERS:
         logging.warning(f'Usuário já cadastrado: {login}')
